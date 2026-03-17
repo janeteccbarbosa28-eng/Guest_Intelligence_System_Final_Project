@@ -20,7 +20,7 @@ Final Data Science and Machine Learning Project.
 <h1 align="center"> Guest Intelligence System (GIS)</h1>
 
 <p align="center">
-  <img src="2.EDA_files/logo.png" width="200" alt="GIS Logo">
+  <img src="2.EDA_files/Logo.png" width="200" alt="GIS Logo">
 </p>
 
 <p align="center">
