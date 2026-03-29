@@ -32,32 +32,35 @@ Final Data Science and Machine Learning Project.
 1. [Project Overview](#-project-overview)
 2. [Goal](#-goal)
 3. [Repository Structure](#-repository-structure)
-4. [Dataset Description](#-dataset-description)
-5. [Methodology and Steps](#-methodology-and-steps)
-6. [Repository Policy](#-repository-policy)
-7. [Reuse in Other Projects](#-reuse-in-other-projects)
-8. [Future Development](#-future-development)
-9. [Reports](#-reports)
-10. [Authors](#-authors)
-11. [License](#-license)
+4. [System Architecture](#system-architecture)
+5. [Recommender System](#-recommender-system)
+6. [Data Overview](#-data-overview)
+7. [Application Layer](#-application-layer)
+8. [Business Value](#-business-value)
+9. [Repository Scope](#-repository-scope)
+10. [Potential Extensions](#-potential-extensions)
+11. [Authors](#-authors)
+12. [License](#-license)
 
 
 ---
 
 ## 📌 Project Overview
 
-The **Guest Intelligence System (GIS)** is a behavioral KYC and personalized recommender system built for the hospitality industry. It combines structured guest data — bookings, stays, reviews, activity preferences, complaints — to build rich guest profiles and deliver intelligent, personalized activity recommendations through an interactive Streamlit dashboard.
+The Guest Intelligence System (GIS) is an end-to-end data science project designed to simulate a real-world guest intelligence platform in the hospitality industry.
 
-The system was designed to simulate a real-world luxury hotel intelligence platform, **I create a synthetically generated data** that mirrors realistic guest behavior patterns. The complete pipeline covers data generation, exploratory analysis, feature engineering, model development, and a production-ready chatbot interface.
+It leverages structured behavioral data — including bookings, stay activity, preferences, and feedback — to build rich guest profiles and generate personalized recommendations that enhance the overall guest experience.
+
+The system integrates machine learning, recommender systems, and modern AI interfaces to bridge the gap between raw data and actionable insights.
 
 ---
 
 ## 🎯 Goal
 
-- Build a **Hybrid Recommender System** combining Content-Based Filtering (cosine similarity) and Collaborative Filtering (Weighted Bayesian Personalized Ranking — WBPR) using adaptive weights based on guest interaction history.
-- Create a **Behavioral KYC profile** for each guest — capturing spending behavior, satisfaction, mobility needs, dietary restrictions, special occasions, and more.
-- Deliver a **Streamlit chatbot** where hotel staff can query any guest and receive personalized activity recommendations with full explainability (scores, radar charts, feature importance).
-- Provide **Business Intelligence** insights — guest origins map, market fit analysis, activity demand seasonality, and Pareto analysis of activity performance.
+- Develop a Hybrid Recommender System combining Content-Based and Collaborative Filtering
+- Build behavioral guest profiles (KYC-style) using multi-source data
+- Deliver personalized recommendations with explainability
+- Provide business insights to support decision-making in hospitality environments
 
 ## 🗂 Repository Structure
 
@@ -76,143 +79,115 @@ GUEST_INTELLIGENCE_SYSTEM/
 
 ---
 
-## 📊 Dataset Description
+<a id="system-architecture"></a>
+## ⚙️ System Architecture
 
-All datasets were synthetically generated using **Faker** and domain-specific logic to simulate realistic hospitality data. The database is stored in **SQLite** (`guest_intelligence.db`) and exported to CSV for processing.
+The GIS follows a modular pipeline:
 
-| # | Dataset | Rows | Description |
-|---|---------|------|-------------|
-| 1 | `GUEST_PROFILE` | 3,500 | Guest demographics, preferences, loyalty, GDPR |
-| 2 | `BOOKING_HISTORY` | 5,000 | Reservation details, packages, payment, channel |
-| 3 | `STAY_BEHAVIOR` | 3,021 | In-stay spending, complaints, satisfaction |
-| 4 | `REVIEWS` | 3,021 | Detailed ratings across 20+ service dimensions |
-| 5 | `ACTIVITY_CATALOG` | 81 | Activities across 8 categories with attributes |
-| 6 | `COMPLAINTS_LOG` | — | Complaint details, resolution, compensation |
-| 7 | `ACTIVITY_PREFERENCES` | 3,021 | Declared interests, attended activities, accessibility needs |
+1. **Data Generation & Processing**
+   Synthetic datasets simulate realistic guest behavior across multiple touchpoints
 
-**Activity Categories:** Water & Sea · Wellness · Culture & History · Adventure · Gastronomy · Nature & Land · Entertainment · Family
+2. **Feature Engineering**
+   Aggregation of behavioral, transactional, and preference-based signals
 
----
+3. **Hybrid Recommendation Engine**
 
-## 🔬 Methodology and Steps
+   * Content-Based Filtering (similarity-driven)
+   * Collaborative Filtering (implicit feedback)
+   * Adaptive combination based on interaction density
 
-### Step 1 — Data Generation
-Synthetic data generated with `Faker`, `random`, `datetime`, `unicodedata` and domain-specific business rules. Stored in SQLite and exported to raw CSV files.
-
-### Step 2 — Exploratory Data Analysis (EDA)
-Univariate and bivariate analysis across all datasets. Visualizations with `Matplotlib` and `Seaborn`.
-
-### Step 3 — Feature Engineering
-Encoding of categorical variables, aggregation of signals and flags.
-
-### Step 4 — Recommender Dataset
-Construction of the unified recommender dataset by merging all feature-engineered tables (`GUEST_PROFILE`, `BOOKING_HISTORY`, `STAY_BEHAVIOR`, `REVIEWS`, `ACTIVITY_PREFERENCES`) and normalizing with `MinMaxScaler`. 
-The `ACTIVITY_CATALOG` was normalized separately, as it serves as a bridge between the guest feature space and the activity feature space.
-
-### Step 5 — Display Dataset
-Construction of the unified display dataset by merging all tables with their original raw data (`GUEST_PROFILE`, `BOOKING_HISTORY`, `STAY_BEHAVIOR`, `REVIEWS`, `ACTIVITY_PREFERENCES`, `COMPLAINTS_LOG`). 
-The `ACTIVITY_CATALOG` was also rebuilt as a display dataset, enriched with a curated image URL for each activity.
-
-### Step 6 — Recommender Model
-
-#### Content-Based Filtering
-Cosine similarity between guest and activity feature vectors across 6 dimensions: price range, family, solo, couple, kids, wellness. Hard filters applied for wheelchair accessibility. Affinity bonus (×1.2) for favourite category.
-
-#### Collaborative Filtering — WBPR
-Interaction enrichment to reduce sparsity from **95.8% → 61.4%** (7,329 → 66,010 interactions) adding behavioral flags (spa, bar, excursion usage).
-Weighted Bayesian Personalized Ranking via `Cornac` library (Python 3.13 compatible). 
-Best metrics: **NDCG@10 = 0.8386 · Precision@10 = 0.5239 · Recall@10 = 0.8213**.
-
-#### Hybrid Model — Adaptive Weights
-| Guest History | CB Weight | CF Weight |
-|---------------|-----------|-----------|
-| 0 interactions | 100% | 0% |
-| 1–9 interactions | 60% | 40% |
-| 10+ interactions | 40% | 60% |
-
-### Step 7 — Streamlit Chatbot
-Interactive luxury-themed dashboard with:
-- **Sidebar — Guest Controls:** Guest ID input, number of recommendations slider, and filters (category, price range, physical intensity, wheelchair accessibility) — the primary entry point to generate personalized recommendations.
-- **Sidebar — Model Performance:** Pop-up dialog displaying the Collaborative Filtering evaluation metrics: NDCG@10, Precision@10, Recall@10, and interaction matrix sparsity.
-- **Sidebar — Business Insights:** Pop-up dialog with business-level analytics — guest origins choropleth map, Market Fit radar (supply vs demand), activity demand seasonality by category, and Pareto analysis of activity performance (Stars vs Dogs).
-- **Tab 1 — Recommendations:** Activity cards with images, hybrid/content/collaborative scores, recommendation reason pills, and category/price/intensity tags.
-- **Tab 2 — Guest Profile:** Full KYC profile with nationality map and 6 subtabs — Guest Info, Booking History, Behavioral Data, Reviews, Activity Preferences, and Complaints Log.
-- **Tab 3 — Analytics:** Score breakdown bar chart, recommended categories donut chart, radar charts (guest vs activity match), scatter plot (price vs intensity), sunburst catalog hierarchy, and feature importance (Explainable AI).
+4. **AI-Powered Interface**
+   Interactive Streamlit dashboard with recommendation outputs and guest insights
 
 ---
 
-## 🔒 Repository Policy
+## 🤖 Recommender System
 
-This is a **public showcase repository** containing:
-- ✅ EDA report and visualizations
-- ✅ Application demo video
-- ✅ Project presentation slides (exported as PDF)
+The recommendation engine combines:
 
-The following are **not included** in this public repository:
-- ❌ Raw and processed datasets (contain synthetic PII)
-- ❌ Feature engineering notebooks
-- ❌ Model training notebooks and trained model files
-- ❌ Full Streamlit application source code
+* **Content-Based Filtering** to match guest preferences with activity attributes
+* **Collaborative Filtering (WBPR)** to leverage implicit behavioral patterns
+* **Adaptive Hybrid Strategy** to dynamically balance both approaches depending on available user data
 
-> 📩 **To view the complete project**, please get in touch — contact details are available in the [Authors](#-authors) section below.
-
-
-## 🔄 Reuse in Other Projects
-
-The GIS architecture is modular and can be adapted for other domains:
-
-- **Retail** — Replace activity catalog with product catalog; guest profile with customer profile
-- **Streaming** — Replace activities with content items; stays with viewing sessions
-- **Healthcare** — Replace activities with treatment/wellness programs
-- **Education** — Replace activities with courses; guest preferences with learning styles
-
-Key components to reuse:
-- Interaction enrichment strategy (behavioral flag → implicit feedback)
-- Adaptive weight hybrid model (CB + CF based on interaction density)
-- WBPR via Cornac (handles high sparsity datasets)
-- Streamlit luxury dashboard template
+The system is designed to handle **high sparsity environments** and deliver relevant recommendations even for low-interaction users.
 
 ---
 
-## 🚀 Future Development
+## 📊 Data Overview
 
-The following features are planned for future versions of the GIS:
+All data used in this project is **synthetically generated** to reflect realistic hospitality scenarios while ensuring privacy.
 
-| Feature | Description |
-|---------|-------------|
-| 🍽️ Restaurant Recommender | Extend recommendations to on-property dining experiences |
-| 💳 Guest Financial Profile | Address financial behavior gaps for revenue optimization |
-| 🔍 Behavioral KYC for Fraud Detection | Complete fraud detection and risk assessment using behavioral signals |
-| 🚨 Real-time Complaint Detection | Implement live complaint detection and automated resolution routing |
-| 💬 Sentiment Analysis | Add NLP sentiment analysis for emotional value detection in reviews |
-| 🌐 Production Deployment | Deploy with live guest data integration and real-time recommendations |
+The datasets include:
+
+* Guest profiles and demographics
+* Booking and stay history
+* Behavioral interactions and preferences
+* Reviews and satisfaction metrics
+* Activity catalog
 
 ---
 
-## 📈 Reports
+## 💡 Application Layer
 
-| Report | Description |
-|--------|-------------|
-| `2.EDA.md` | Full Exploratory Data Analysis with visualizations |
-| `Chatboot_Video` | Demo video of the Streamlit application in action |
+The system is delivered through an **interactive Streamlit dashboard**, enabling:
+
+* Guest-level recommendation queries
+* Personalized activity suggestions
+* Interpretable scoring and recommendation rationale
+* High-level business insights and visual analytics
+
+---
+
+## 🚀 Business Value
+
+GIS demonstrates how data science and AI can:
+
+* Enhance **guest personalization**
+* Improve **customer experience and satisfaction**
+* Support **data-driven decision making**
+* Enable **scalable recommendation systems** in hospitality and similar domains
+
+---
+
+## 🔒 Repository Scope
+
+This repository is a **public showcase** of the project and includes:
+
+* Project overview and documentation
+* Exploratory data analysis (EDA)
+* Visualizations
+* Demo materials
+
+Some components (e.g., full pipelines, models, and application code) are not included and can be discussed upon request.
+
+---
+
+## 🔄 Potential Extensions
+
+The system architecture can be adapted to multiple domains:
+
+* Retail (product recommendation)
+* Streaming platforms (content recommendation)
+* Education (course recommendation)
+* Healthcare (wellness program recommendation)
 
 ---
 
 ## 👤 Authors
 
 **Janete Barbosa**
-- 🎓 Data Science & Machine Learning — Final Project
-- 💼 [LinkedIn](https://linkedin.com/in/janete-barbosa)
-- 🐙 [GitHub](https://github.com/janeteccbarbosa28-eng)
+Data Science & Machine Learning
+
+* LinkedIn: [https://linkedin.com/in/janete-barbosa](https://linkedin.com/in/janete-barbosa)
+* GitHub: [https://github.com/janeteccbarbosa28-eng](https://github.com/janeteccbarbosa28-eng)
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+MIT License
 
 ---
-
 <p align="center">
   <em>Built with 💛 for the hospitality industry — GIS © 2026 Janete Barbosa</em>
 </p>
