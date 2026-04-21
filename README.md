@@ -1,140 +1,153 @@
 # Guest_Intelligence_System_Final_Project
-Guest Intelligence System (GIS) — A hospitality recommender system  combining Content-Based Filtering and Collaborative Filtering (WBPR)  to deliver personalized activity recommendations with interactive Streamlit dashboard.  
+Guest Intelligence System (GIS) — An AI-powered hospitality platform that transforms guest data into personalized experiences, real-time problem resolution, and proactive service across a multi-hotel network.  
 Final Data Science and Machine Learning Project.
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white" alt="Jupyter Notebook">
   <img src="https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit">
-  <img src="https://img.shields.io/badge/SQLite-Database-003B57?logo=sqlite&logoColor=white" alt="SQLite">
   <img src="https://img.shields.io/badge/Pandas-Data%20Analysis-150458?logo=pandas&logoColor=white" alt="Pandas">
   <img src="https://img.shields.io/badge/Scikit--Learn-ML-F7931E?logo=scikit-learn&logoColor=white" alt="Scikit-learn">
   <img src="https://img.shields.io/badge/Cornac-Recommender-6A0DAD?logoColor=white" alt="Cornac">
   <img src="https://img.shields.io/badge/Plotly-Visualization-3F4F75?logo=plotly&logoColor=white" alt="Plotly">
   <img src="https://img.shields.io/badge/NumPy-Scientific-013243?logo=numpy&logoColor=white" alt="NumPy">
-  <img src="https://img.shields.io/badge/Seaborn-Visualization-4C72B0?logoColor=white" alt="Seaborn">
-  <img src="https://img.shields.io/badge/Faker-Data%20Generation-00C58E?logoColor=white" alt="Faker">
+  <img src="https://img.shields.io/badge/NLP-Text%20Analysis-FF6F00?logoColor=white" alt="NLP">
   <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License">
 </p>
 
-<h1 align="center"> Guest Intelligence System (GIS)</h1>
+<h1 align="center">Guest Intelligence System (GIS)</h1>
 
 <p align="center">
-  <img src="2.EDA_files/Logo.png" width="200" alt="GIS Logo">
+  <img src="Images/Logo.png" width="200" alt="GIS Logo">
 </p>
 
 <p align="center">
-  <em>A hospitality recommender system combining Content-Based Filtering and Collaborative Filtering (WBPR) to deliver personalized activity recommendations — Final Data Science & Machine Learning Project</em>
+  <em>The system that knows your guest better than they know themselves.</em>
 </p>
+
+---
 
 ## 📑 Table of Contents
 
 1. [Project Overview](#-project-overview)
-2. [Goal](#-goal)
-3. [Repository Structure](#-repository-structure)
-4. [System Architecture](#system-architecture)
-5. [Recommender System](#-recommender-system)
-6. [Data Overview](#-data-overview)
-7. [Application Layer](#-application-layer)
-8. [Business Value](#-business-value)
-9. [Repository Scope](#-repository-scope)
-10. [Potential Extensions](#-potential-extensions)
-11. [Authors](#-authors)
-12. [License](#-license)
-
+2. [What's New in v2](#-whats-new-in-v2)
+3. [Goal](#-goal)
+4. [System Overview](#-system-overview)
+5. [Technical Highlights](#-technical-highlights)
+6. [Capabilities](#-capabilities)
+7. [Data Foundation](#-data-foundation)
+8. [Application Layer](#-application-layer)
+9. [Business Value](#-business-value)
+10. [What's Next](#-whats-next)
+11. [Repository Scope](#-repository-scope)
+12. [Author](#-author)
+13. [License](#-license)
 
 ---
 
 ## 📌 Project Overview
 
-The Guest Intelligence System (GIS) is an end-to-end data science project designed to simulate a real-world guest intelligence platform in the hospitality industry.
+The **Guest Intelligence System (GIS)** is an end-to-end AI platform for the hospitality industry, designed to deliver personalized guest experiences across the entire customer journey.
 
-It leverages structured behavioral data — including bookings, stay activity, preferences, and feedback — to build rich guest profiles and generate personalized recommendations that enhance the overall guest experience.
+It learns from guest interactions — bookings, stays, dining, preferences, complaints, and feedback — to continuously build and refine dynamic guest profiles.
 
-The system integrates machine learning, recommender systems, and modern AI interfaces to bridge the gap between raw data and actionable insights.
+**Result:** every interaction becomes smarter, more personalized, and more proactive.
+
+> GIS operates BEFORE, DURING, and AFTER the stay — addressing critical gaps not fully covered by traditional booking platforms.
+
+---
+
+## 🆕 What's New in v2
+
+| Capability | v1 | v2 |
+|-----------|:---:|:---:|
+| Activity Recommendations | ✦ | ✦✦ |
+| Restaurant Recommendations | — | ✦✦ |
+| Real-Time Complaint Intelligence | — | ✦✦ |
+| Check-in Risk Prediction | — | ✦✦ |
+| AI Resolution Agent | — | ✦✦ |
+| Multi-Hotel Network | — | ✦✦ |
+| Live Booking & Stay Tracking | — | ✦✦ |
+| Business Intelligence | ✦ | ✦✦ |
+| Guest Timeline Awareness | — | ✦✦ |
 
 ---
 
 ## 🎯 Goal
 
-- Develop a Hybrid Recommender System combining Content-Based and Collaborative Filtering
-- Build behavioral guest profiles (KYC-style) using multi-source data
-- Deliver personalized recommendations with explainability
-- Provide business insights to support decision-making in hospitality environments
-
-## 🗂 Repository Structure
-
-```
-GUEST_INTELLIGENCE_SYSTEM/
-│
-├── 2.EDA_files/              # EDA visualizations and supporting files
-├── Chatboot_Video_u.../      # Demo video of the Streamlit application
-├── 2.EDA.md                  # Exploratory Data Analysis report (Markdown)
-├── Guest Intelligence ...    # Project documentation
-├── LICENSE                   # MIT License
-└── README.md                 # This file
-```
-
-> ⚠️ **Note:** This public repository contains only a curated subset of the project — EDA reports, visualizations, and a demo video. The full project (datasets, feature engineering, model notebooks, Streamlit app, and trained models) is available in a **private repository upon request**. See [Repository Policy](#-repository-policy) for details.
+- Build **hybrid recommender systems** for personalized guest experiences using multi-model hybrid strategies
+- Develop **behavioral guest intelligence profiles** (KYC-style) using multi-source data across a hotel network
+- Detect and resolve **guest complaints in real-time** using NLP and classification models
+- **Predict complaint risk at check-in** to enable proactive service
+- Deliver **explainable AI-driven recommendations**
+- Support **data-driven decision-making** at both hotel and network level
 
 ---
 
-<a id="system-architecture"></a>
-## ⚙️ System Architecture
+## 🔮 System Overview
 
-The GIS follows a modular pipeline:
+GIS operates across three phases of the guest journey:
 
-1. **Data Generation & Processing**
-   Synthetic datasets simulate realistic guest behavior across multiple touchpoints
+| Phase | Guest Experience | System Intelligence |
+|-------|-----------------|---------------------|
+| **Arrival** | Smooth, personalized check-in | Risk scoring, staff briefing, preparation |
+| **During Stay** | Tailored recommendations, fast issue resolution | Real-time recommendations and detection |
+| **Departure** | Guest feels valued | Profile enriched, system learns for next visit |
 
-2. **Feature Engineering**
-   Aggregation of behavioral, transactional, and preference-based signals
+The system follows a modular architecture:
 
-3. **Hybrid Recommendation Engine**
+**Data Layer → Intelligence Layer → Action Layer → Feedback Loop**
 
-   * Content-Based Filtering (similarity-driven)
-   * Collaborative Filtering (implicit feedback)
-   * Adaptive combination based on interaction density
-
-4. **AI-Powered Interface**
-   Interactive Streamlit dashboard with recommendation outputs and guest insights
+Each layer contributes to a continuously evolving guest intelligence system.
 
 ---
 
-## 🤖 Recommender System
+## ⚙️ Technical Highlights
 
-The recommendation engine combines:
-
-* **Content-Based Filtering** to match guest preferences with activity attributes
-* **Collaborative Filtering (WBPR)** to leverage implicit behavioral patterns
-* **Adaptive Hybrid Strategy** to dynamically balance both approaches depending on available user data
-
-The system is designed to handle **high sparsity environments** and deliver relevant recommendations even for low-interaction users.
+- Hybrid Recommender System architecture (Content-Based + Collaborative signals)
+- Implicit feedback modeling from behavioral data
+- Real-time inference within an interactive application layer
+- NLP-driven complaint classification and prioritization
+- Explainable AI for transparent recommendation logic
+- Modular architecture enabling scalability across multiple hotels
 
 ---
 
-## 📊 Data Overview
+## 🧩 Capabilities
 
-All data used in this project is **synthetically generated** to reflect realistic hospitality scenarios while ensuring privacy.
+### ✦ Personalized Recommendations
+AI-powered suggestions for activities and restaurants — tailored to each guest's profile, dietary needs, accessibility requirements, and past behavior.
 
-The datasets include:
+### ⚠ Real-Time Complaint Intelligence
+When a complaint arrives, the system instantly classifies its urgency and generates a personalized resolution strategy — considering who the guest is, not just what they're complaining about.
 
-* Guest profiles and demographics
-* Booking and stay history
-* Behavioral interactions and preferences
-* Reviews and satisfaction metrics
-* Activity catalog
+### ◉ Proactive Check-in Risk
+Before a guest even reaches the front desk, the system has already assessed their likelihood of encountering issues — enabling staff to act before problems happen.
+
+### 🏨 Live Stay Tracking
+Everything that happens during a stay — bookings, dining, complaints — is tracked in real-time and feeds back into the guest profile.
+
+---
+
+## 📊 Data Foundation
+
+Built on **multi-source, interconnected datasets** covering the full guest lifecycle.
+
+All data is synthetically generated to simulate realistic hospitality scenarios while ensuring privacy compliance.
 
 ---
 
 ## 💡 Application Layer
 
-The system is delivered through an **interactive Streamlit dashboard**, enabling:
+The system is delivered through an **interactive multi-hotel Streamlit dashboard** featuring:
 
-* Guest-level recommendation queries
-* Personalized activity suggestions
-* Interpretable scoring and recommendation rationale
-* High-level business insights and visual analytics
+- **Landing Page** — Hotel network with destination imagery
+- **Dynamic Environments** — Each hotel has its own visual identity
+- **Guest Management** — Filterable by status (Currently at Hotel / Future Bookings / Past Stays)
+- **7 Intelligence Tabs per Guest** — Profile, Activities, Restaurants, Complaints, Check-in Risk, Current Stay, Analytics
+- **AI Resolution Agent** — Real-time complaint analysis with personalized escalation and compensation
+- **Business Intelligence** — Per-hotel and global KPIs, revenue analysis, demand patterns
+- **Explainable AI** — Transparent reasoning behind every recommendation
 
 ---
 
@@ -142,44 +155,39 @@ The system is delivered through an **interactive Streamlit dashboard**, enabling
 
 GIS demonstrates how data science and AI can:
 
-* Enhance **guest personalization**
-* Improve **customer experience and satisfaction**
-* Support **data-driven decision making**
-* Enable **scalable recommendation systems** in hospitality and similar domains
+- **Personalize** every guest touchpoint — from dining to activities
+- **Prevent** problems before they happen
+- **Resolve** issues faster with AI-powered intelligence
+- **Protect** revenue by identifying at-risk guests in real-time
+- **Scale** seamlessly across a hotel network
+- **Learn** continuously — every stay makes the system smarter
+
+---
+
+## 🔄 What's Next
+
+The GIS platform is under active development. Future versions will introduce additional intelligence layers, deeper personalization capabilities, and expanded domain applications.
 
 ---
 
 ## 🔒 Repository Scope
 
-This repository is a **public showcase** of the project and includes:
+This repository is a **public showcase** and includes:
 
-* Project overview and documentation
-* Exploratory data analysis (EDA)
-* Visualizations
-* Demo materials
+- Exploratory data analysis (EDA) and visualizations
+- Demo materials
 
-Some components (e.g., full pipelines, models, and application code) are not included and can be discussed upon request.
+> Full implementation (models, pipelines, application code) is maintained in a private repository and available upon request.
 
 ---
 
-## 🔄 Potential Extensions
+## 👤 Author
 
-The system architecture can be adapted to multiple domains:
+**Janete Barbosa**  
+Data Science & Machine Learning  
 
-* Retail (product recommendation)
-* Streaming platforms (content recommendation)
-* Education (course recommendation)
-* Healthcare (wellness program recommendation)
-
----
-
-## 👤 Authors
-
-**Janete Barbosa**
-Data Science & Machine Learning
-
-* LinkedIn: [https://linkedin.com/in/janete-barbosa](https://linkedin.com/in/janete-barbosa)
-* GitHub: [https://github.com/janeteccbarbosa28-eng](https://github.com/janeteccbarbosa28-eng)
+- LinkedIn: https://linkedin.com/in/janete-barbosa  
+- GitHub: https://github.com/janeteccbarbosa28-eng
 
 ---
 
@@ -188,6 +196,7 @@ Data Science & Machine Learning
 MIT License
 
 ---
+
 <p align="center">
   <em>Built with 💛 for the hospitality industry — GIS © 2026 Janete Barbosa</em>
 </p>
