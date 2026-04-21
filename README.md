@@ -101,7 +101,7 @@ The system follows a modular architecture:
 Each layer contributes to a continuously evolving guest intelligence system.
 
 ---
-
+<a id="-technical-highlights"></a>
 ## ⚙️ Technical Highlights
 
 - Hybrid Recommender System architecture (Content-Based + Collaborative signals)
